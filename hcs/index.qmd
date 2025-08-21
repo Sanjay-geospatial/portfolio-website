@@ -1,0 +1,34 @@
+---
+title: "High Carbon Stock approach for Palm oil cultivated region, Malaysia"
+author: "Sanjay M"
+description: ""
+filters:
+   - lightbox
+lightbox: 
+  match: auto
+toc: false
+toc-depth: 5
+
+code-fold: true
+categories: 
+execute: 
+  eval: false
+---
+
+One of the most striking challenges was the dominance of palm oil cultivation and its implications for forest conservation. Palm oil expansion often encroaches on biodiverse, carbon-rich forests, and distinguishing which lands should be prioritized for conservation is a central goal of the High Carbon Stock (HCS) Approach. I wanted to build a workflow that would not only estimate carbon stock but also make the results transparent and accessible through a visualization tool.
+
+The first step was to estimate aboveground biomass (AGB) across the region. For this, I turned to GEDI L4A data, which provides high-resolution lidar-based biomass and canopy structure measurements. GEDI footprints were sparse, but they offered an essential ground-truth signal. To scale beyond the footprint level, I combined them with Google DeepMind’s embedding datasets, which provide rich feature representations of satellite imagery across multiple modalities. By training a regression model on this combination, I was able to generalize GEDI’s biomass estimates across the wider Sabah landscape.
+
+Once AGB was mapped, the next step was to convert it into carbon stock estimates. Using standard conversion factors (roughly half of dry biomass is carbon), I produced wall-to-wall carbon stock maps for the region. These maps revealed the expected patterns: high carbon storage in intact forests of Sabah’s interior, and much lower values across oil palm estates and degraded areas.
+
+With carbon stock maps in hand, I applied the HCS Approach classification framework. This methodology divides landscapes into different classes based on carbon thresholds — from high-density forests that should be protected, to low-carbon scrublands and already converted lands. Using the thresholds, I reclassified the continuous carbon stock data into discrete HCS classes, effectively creating a decision-support layer for conservation planning.
+
+The final part of the project was to make this analysis accessible to public. I built a Google Earth Engine (GEE) application where users can explore Sabah’s landscape interactively. The app allows zooming into specific regions, overlaying HCS classes on satellite basemaps, and toggling between AGB, carbon stock layers, satellite embeddingd and GEDI L4A footprints. With this tool, conservation organizations could instantly see which areas qualify as high carbon stock forests and where palm oil expansion would pose the greatest environmental risks.
+
+## High carbon stock map of Sabah, Malaysia
+![HCS](hcs.png){width=750px style="border-radius:12px;"}
+
+
+This project showed how combining state-of-the-art data sources like GEDI and DeepMind embeddings with cloud-native geospatial platforms can bring transparency to land-use decisions. By grounding the work in the HCS Approach, it also provided a pathway for balancing palm oil development with forest conservation — ensuring that some of the world’s richest carbon and biodiversity reserves are protected for the future.
+
+Code : [https://github.com/Sanjay-geospatial/High-carbon-stock-approach](https://github.com/Sanjay-geospatial/High-carbon-stock-approach)

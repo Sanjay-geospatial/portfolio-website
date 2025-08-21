@@ -1,0 +1,33 @@
+---
+title: "A python package for easy access and visualization of GEDI L4A data"
+author: "Sanjay M"
+description: ""
+filters:
+   - lightbox
+lightbox: 
+  match: auto
+toc: false
+toc-depth: 5
+
+code-fold: true
+categories: 
+execute: 
+  eval: false
+---
+
+![gedi](globaleco.gif){width=750px style="border-radius:12px;"}
+
+
+This project started from a simple but recurring need: downloading and visualizing GEDI L4A data efficiently. While NASA Earthdata provides GEDI products, the workflow for accessing, downloading, and exploring the data is often fragmented and repetitive. I wanted to streamline this process into a lightweight Python package that anyone working with GEDI could quickly adopt.
+
+I designed the package around modular programming principles, with each component dedicated to a specific task. At its core, the package introduces a GEDI class that helps users discover and retrieve links to GEDI L4A files. Its key method, get_links, queries the GEDI archive and returns all relevant file links neatly organized in a Pandas DataFrame. This step makes the discovery process transparent and allows users to filter or inspect links before downloading.
+
+The GEDI class also comes with a download method, which takes the links from the DataFrame and automatically retrieves the GEDI data to a local directory. This method handles the data pipeline seamlessly, so users don’t have to worry about constructing URLs or managing download scripts.
+
+For working with the downloaded data, I developed a second class: GEDIReader. This class is responsible for interpreting and interacting with the actual GEDI files. Its main method, get_gedi, reads the contents of the downloaded files into a Python-friendly format, enabling further analysis.
+
+Finally, I added a visualize method within GEDIReader to provide quick-look visualizations of the GEDI footprints. With a single command, users can see where the laser footprints fall on a map, giving immediate spatial context to the data they just downloaded. This visualization helps bridge the gap between raw data files and actionable insights, making it easier for users to decide how to incorporate GEDI into their workflows.
+
+The result is a simple, modular Python package that lowers the barrier for working with GEDI L4A data. By encapsulating the workflow into discover → download → read → visualize, the package saves time and provides an intuitive entry point for researchers, students, or practitioners interested in forest structure and biomass studies. It also demonstrates how modular, class-based design can make scientific software both clean and practical.
+
+Code : [https://github.com/Sanjay-geospatial/GEDI---globaleco](https://github.com/Sanjay-geospatial/GEDI---globaleco)

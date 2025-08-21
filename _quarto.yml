@@ -1,0 +1,23 @@
+project:
+  type: website
+
+website:
+  title: "Sanjay M"
+  description: "Geospatial Data Scientist Portfolio"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: projects.qmd
+        text: Projects
+    right:
+      - icon: github
+        href: https://github.com/Sanjay-geospatial
+      - icon: linkedin
+        href: https://www.linkedin.com/in/sanjay-m-2034b1243/
+format:
+  html:
+    theme: darkly
+    css: style.css
+    toc: false
+      

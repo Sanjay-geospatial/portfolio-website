@@ -1,0 +1,26 @@
+---
+title: "3D visualization of bird migration paths across continents"
+author: "Sanjay M"
+description: ""
+filters:
+   - lightbox
+lightbox: 
+  match: auto
+toc: false
+toc-depth: 5
+
+code-fold: true
+categories: 
+execute: 
+  eval: false
+---
+
+![migration](birds.gif){width=750px style="border-radius:12px;"}
+
+One of the most fascinating ecological phenomena to visualize is the seasonal migration of birds. For this project, I wanted to create an interactive way to see how bird species move across continents over time, transforming tabular movement records into a dynamic 3D globe simulation. The goal was to map static migration routes interactively.
+
+To achieve this, I used Pydeck, a Python wrapper for Deck.gl, which is well-suited for large-scale geospatial visualization on a 3D globe. I ingested migration datasets containing latitude, longitude, and time information for different species, then processed them into trajectory segments. Pydeck's seamless functions allowed me to represent migration paths as animated arcs that traced bird movements across oceans and continents in near-realistic globe.
+
+The final simulation presented a rotatable 3D globe, where users could zoom, tilt, and watch as migratory routes unfolded. Color coding distinguished species. The visualization not only made the complexity of migration easier to grasp, but also demonstrated how modern geospatial tools like Pydeck can bring ecological data to life in a way that is both scientifically insightful and visually engaging.
+
+Code : [https://github.com/Sanjay-geospatial/Pydeck_birds_migration](https://github.com/Sanjay-geospatial/Pydeck_birds_migration)

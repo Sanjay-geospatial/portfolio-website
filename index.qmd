@@ -1,0 +1,45 @@
+---
+format: html
+toc: true
+---
+
+<div style="display: flex; align-items: center;">
+
+  <div style="font-size: 2em; font-weight: bold; margin-right: 20px;">
+    👋 Hi, I'm Sanjay
+  </div>
+
+  <img src="images/sanjay.jpeg" 
+       alt="Sanjay M" 
+       style="width:320px; height:320px; border-radius:50%; object-fit:cover;">
+</div>
+
+<p>Welcome to my portfolio website!</p>
+
+I’m a **GIS Specialist** and an aspiring **Geospatial Data Scientist** with expertise in **Forestry, GIS, and AI for sustainability**.  
+
+Currently, I am helping my company **track supply chains for EUDR compliance**, ensuring transparency and reducing deforestation.  
+
+---
+
+## 🧑‍💻 About Me
+
+- 🌍 Passionate about applying geospatial AI for **climate, forestry, and agriculture**  
+- 🔭 Skilled in **GIS, Deep Learning, and Earth Observation Data**  
+- 📊 Experienced with **Python, PyTorch, STAC API, Google Earth Engine and PostGIS**  
+- 🎯 Focus areas: **Deforestation monitoring, Carbon Stock Estimation, and Forest Cover Analytics**
+
+---
+
+## 🎓 Education
+
+**M.Sc. (Hons.) Forestry** – Keladi Shivappa Nayaka University of Agricultural & Horticultural Sciences (2022–2024)  
+
+**B.Sc. (Hons.) Forestry** – University of Agricultural & Horticultural Sciences (2017–2021)  
+
+---
+
+## 📬 Contact
+
+- 📧 Email: sanjaymanjappa25@gmail.com  
+- 📞 Phone : +91 9900797596

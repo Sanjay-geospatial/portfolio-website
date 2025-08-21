@@ -1,0 +1,77 @@
+---
+title: ""
+filters:
+  - lightbox
+lightbox: 
+  match: auto
+format:
+  html:
+    toc: false
+    page-layout: full
+    theme: darkly
+---
+
+## Projects
+
+:::: {layout="[50, 50]"}
+::: {#First-column}
+<a href="forest_cover/index.qmd" >
+<img src="forest_cover/fc.jpg" style="height: 250px; width: 100%;">
+</a>
+**Forest cover classification**  
+Simple multi-output regression model for predicting canopy height and canopy cover
+
+:::
+::: {#second-column}
+<a href="cloud_cover/index.qmd">
+<img src="cloud_cover/cloudy.png" style="height: 250px; width: 100%; ">
+</a>
+**Cloud cover removal using GenAI**  
+Pix2Pix model based cloud cover removal technique for Satellite images
+
+:::
+:::
+
+:::: {layout="[50, 50]"}
+::: {#First-column}
+<a href="hcs/index.qmd">
+<img src="hcs/hcs.png" style="height: 250px; width: 100%; ">
+</a>
+**High Carbon Stock approach (HCS)**  
+Aboveground biomass estimation using Google deepmind's embedding dataset 
+
+:::
+::: {#second-column}
+<a href="deforestation/index.qmd">
+<img src="deforestation/deforestation.jpg" style="height: 250px; width: 100%; ">
+</a>
+**Deforestation detection using Unet**  
+Unet based segmentation of sentinel 1 & sentinel 2 images
+:::
+:::
+
+
+
+:::: {layout="[50, 50]"}
+::: {#First-column}
+<a href="globaleco/index.qmd">
+<img src="globaleco/gedi.jpg" style="height: 250px; width: 100%; ">
+</a>
+**Globaleco - Python package**  
+A simple python package for seamless downloading and visualizing GEDIL4A data
+
+:::
+::: {#second-column}
+<a href="birds/index.qmd">
+<img src="birds/birds.jpg" style="height: 250px; width: 100%; ">
+</a>
+**Bird migration visualization**  
+Pydeck based visualization for migration path of three birds
+:::
+:::
+
+
+
+
+
+

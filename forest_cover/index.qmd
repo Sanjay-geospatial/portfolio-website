@@ -1,0 +1,44 @@
+---
+title: "Cloud native forest cover classification using deep learning"
+author: "Sanjay M"
+description: ""
+image: dl_cover.png
+filters:
+   - lightbox
+lightbox: 
+  match: auto
+toc: false
+toc-depth: 5
+
+code-fold: true
+categories: 
+execute: 
+  eval: false
+---
+
+When I began working on forest cover classification, my primary motivation was to capture the complexity of forest ecosystems beyond simple “forest / non-forest” masks. I wanted to design a system that could estimate multiple forest attributes simultaneously — canopy height and cover cover — and do so in a scalable way using openly available satellite data. Instead of relying on local datasets or offline processing, I decided to build the entire pipeline in the cloud, leveraging STAC APIs and NASA’s Earthdata to pull harmonized datasets directly into the workflow.
+
+The data foundation was critical. I selected three complementary sources: GEDI LiDAR footprints to provide precise canopy structure information, ALOS PALSAR radar backscatter to capture vegetation texture and moisture sensitivity, and Landsat multispectral imagery to contribute spectral indices like NDVI, NDWI etc. Together, these offered a robust multi-sensor perspective of forest conditions. Using Python's robust modular programming, I developed a pipeline for data access and data preprocessing with very few classes which allowed me to query STAC client  datasets efficiently, filter them temporally and spatially, and prepare training samples without downloading terabytes of raw files.
+
+Model design was another challenge. Since my objective was to predict several forest parameters at once, I moved away from traditional single-output classification models. Instead, I implemented a multi-output regression model in PyTorch. The architecture was very simple with few hidden layers and multiple regression heads at the output stage — each tuned for a specific forest attribute. This design allowed the model to learn shared representations of forest structure while still maintaining task-specific specialization.
+
+Training such a model required careful orchestration. I used cloud GPUs and containerized the workflow so that it could run reproducibly. GEDI footprints served as ground truth labels for canopy height and cover cover. Loss functions were a weighted combination of mean squared error for each output, allowing me to balance accuracy across tasks.
+
+Once trained, the model was evaluated on unseen forest regions. Results showed that integrating radar, LiDAR, and optical data dramatically improved predictive power compared to any single sensor with an r square value of 0.5. The model generalized well, producing consistent canopy height and canopy cover estimates . And the final forest cover classification was carried based on the following criteria. 
+
+## Predicted outputs : Canopy height and Canopy cover
+
+![Forest Cover](predicted.jpg){width=750px style="border-radius:12px;"}
+
+| Tree Cover | Canopy Height  | Class            |
+|------------|----------------|------------------|
+| > 0.7      | > 20m          | Primary Forest   |
+| 0.4–0.7    | 5–20m          | Secondary Forest |
+| < 0.4      | < 5m           | Others           |
+
+One of the most rewarding moments was visualizing continuous forest structure maps directly in the cloud — no need for heavy downloads, just tiled outputs accessible through a simple pipeline.
+
+Ultimately, this project demonstrated how modern geospatial AI workflows can combine cloud computing, open APIs, and deep learning to produce actionable environmental intelligence. By designing a multi-output regression approach, I moved beyond simple forest classification toward richer forest characterization. And by building it entirely on cloud-native tools, the system remains scalable and reproducible, paving the way for monitoring forest dynamics at regional to global scales.
+Thanks for reading.
+
+Code : [https://github.com/Sanjay-geospatial/Forest-cover-classification](https://github.com/Sanjay-geospatial/Forest-cover-classification)

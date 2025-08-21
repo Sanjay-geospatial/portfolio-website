@@ -1,0 +1,32 @@
+---
+title: "Cloud cover removal app using the power of GenAI"
+author: "Sanjay M"
+description: ""
+filters:
+   - lightbox
+lightbox: 
+  match: auto
+toc: false
+toc-depth: 5
+
+code-fold: true
+categories: 
+execute: 
+  eval: false
+---
+
+![cloud_app](app.gif){width=750px style="border-radius:12px;"}
+
+The idea for this project came from one of the most persistent challenges in satellite remote sensing: cloud cover. Optical satellites like Landsat and Sentinel-2 are invaluable for Earth observation, but a significant fraction of their imagery is obscured by clouds. Traditional methods of cloud masking often discard large portions of data, leaving gaps in analysis. I wanted to see whether generative AI could reconstruct the obscured pixels and provide cloud-free imagery that was still useful for downstream applications.
+
+I chose the Pix2Pix architecture, a conditional GAN model originally designed for image-to-image translation. The intuition was simple: treat cloud-covered satellite images as the “input domain” and their cloud-free counterparts as the “target domain.” By training the model on paired datasets where both cloudy and cloud-free versions of the same location existed, the generator could learn how to “hallucinate” realistic surface features beneath the clouds, while the discriminator kept the outputs sharp and plausible. I built the model using TensorFlow, customizing the loss functions to balance adversarial training with pixel-wise reconstruction fidelity.
+
+Collecting and preparing training data was an important step. Using STAC API, I compiled pairs of cloudy and near-simultaneous cloud-free sentinel 2 images. Due to limitation of computing resources, the model was trained only with a single epoch. However, the results were quite satisfactory. 
+
+But building the model was only half the journey. I wanted people beyond the research community to actually use it. For this, I deployed the trained Pix2Pix model on Hugging Face Spaces, taking advantage of their model hosting and inference API. This made the model easily accessibl, removing the need for anyone to set up TensorFlow locally.
+
+To create a more interactive experience, I built a Streamlit web app where users could upload their own cloudy satellite image patches and instantly view reconstructed outputs. The interface was intentionally simple: upload an image, click a button and see the before-and-after comparison side by side. The backend connected seamlessly to the Hugging Face model endpoint, ensuring scalability and responsiveness.
+
+The project quickly gained attention as an example of how Generative AI can be harnessed for real-world geospatial problems. While I emphasize that the outputs should not replace original observations in critical workflows (since generative reconstructions may introduce artifacts), the tool demonstrated how cloud cover no longer had to be a dead end. 
+
+Code : [https://github.com/Sanjay-geospatial/Pix2pix-Cloud-free-image-generation](https://github.com/Sanjay-geospatial/Pix2pix-Cloud-free-image-generation)

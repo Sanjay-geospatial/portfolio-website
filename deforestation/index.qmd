@@ -1,0 +1,27 @@
+---
+title: "Deforestation detection using using multisource satellite data with Unet"
+author: "Sanjay M"
+description: ""
+image: dl_cover.png
+filters:
+   - lightbox
+lightbox: 
+  match: auto
+toc: false
+toc-depth: 5
+
+code-fold: true
+categories: 
+execute: 
+  eval: false
+---
+
+The goal was to explore how deep learning could help track one of the most pressing environmental crises of our time — deforestation in the Amazon rainforest. The Amazon is vast, dynamic, and often obscured by clouds, making reliable monitoring a major technical challenge. I decided to design a deep learning pipeline that combined radar and optical satellite data, giving the model the best possible chance to “see through” different conditions and detect forest loss.
+
+For the dataset, I relied on a publicly available Amazon deforestation Kaggle dataset, which contained labeled samples of forested and deforested areas. From the satellite side, I used Sentinel-1 radar (VV, VH polarizations) to provide structural information about vegetation, and Sentinel-2 optical bands (Blue, Green, Red, NIR) to capture spectral patterns associated with vegetation health and land cover change. By stacking these channels, the model could learn complementary information from both radar and optical perspectives.
+
+I chose a U-Net architecture for segmentation, as it is well-suited for pixel-level classification in remote sensing. U-Net’s encoder-decoder design allowed the model to capture global context while preserving fine-grained spatial details through skip connections. The task was formulated as binary segmentation: classifying each pixel as either forest or deforested. For training, I used Binary Cross-Entropy (BCE) loss, which worked well for this two-class problem, and accuracy as a straightforward evaluation metric.
+
+Training the model required careful balancing of the dataset, since deforested areas were relatively small compared to intact forest. After several epochs, the model began to converge strongly. The final results were promising: a binary cross-entropy loss of 0.16 and an accuracy of 0.94 on the validation set. This meant the U-Net was able to correctly classify most pixels, capturing the complex boundary between forest and cleared land with good reliability.
+
+Code : [https://github.com/Sanjay-geospatial/Deforestation-detection-using-Unet](https://github.com/Sanjay-geospatial/Deforestation-detection-using-Unet)
