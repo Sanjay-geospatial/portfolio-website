@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: docs
+  output-dir: docs/
 website:
   title: "Sanjay M"
   description: "Geospatial Data Scientist Portfolio"
